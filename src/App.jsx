@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import FinanceAssistant from "./FinanceAssistant";
 import "./App.css";
 
 const today = () => {
@@ -556,6 +557,7 @@ function App() {
   const maxCategory = Math.max(...categoryTotals.map((item) => item[1]), 1);
   const topCategory = categoryTotals[0];
   const budgetPercent = budget > 0 ? Math.min((totalSpent / budget) * 100, 100) : 0;
+  
 
   const donutGradient = useMemo(() => {
     if (totalSpent <= 0) return "#e5e8df";
@@ -813,6 +815,15 @@ function App() {
             )}
           </article>
         </section>
+        <FinanceAssistant
+  transactions={transactions}
+  monthlyTransactions={monthlyTransactions}
+  totalSpent={totalSpent}
+  budget={budget}
+  selectedMonth={selectedMonth}
+  categoryTotals={categoryTotals}
+  totalIncome={totalIncome}
+/>
 
         <section className="bottom-grid">
           <article className="panel insights-panel" id="insights">
